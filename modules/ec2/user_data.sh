@@ -1,18 +1,19 @@
 #!/bin/bash
+set -eux
 
-sudo apt update -y
-sudo apt install -y docker.io git
+exec > /var/log/user-data.log 2>&1
 
-systemctl start docker
-systemctl enable docker
+apt update -y
+apt install -y curl git build-essential python3
 
-sudo usermod -aG docker $USER
-newgrp docker
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install -y nodejs
 
-sudo docker run -d \
-  -p 1337:1337 \
-  -e HOST=0.0.0.0 \
-  -e PORT=1337 \
-  -e DATABASE_CLIENT=sqlite \
-  --name strapi \
-  strapi:latest
+cd /home/ubuntu
+
+npx create-strapi-app@latest my-strapi --quickstart
+
+cd my-strapi
+npm run build
+
+nohup npm start > /home/ubuntu/strapi.log 2>&1 &
