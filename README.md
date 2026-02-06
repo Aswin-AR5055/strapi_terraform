@@ -17,6 +17,25 @@ deploy:
 
 ------------------------------------------------------------------------
 
+## Screenshots
+
+### ALB Target Group Health
+![ALB Target Group Health](screenshots/target_health.png)
+
+### Strapi Admin Panel
+![Strapi Admin Panel](screenshots/strapi.png)
+
+### pm2 status
+![pm2 status](screenshots/pm2_status.png)
+
+### Resources (I forgot to screenshot terraform apply resource creation output so i attached screenshot of terraform state list)
+![Resources](screenshots/resources.png)
+
+### Instance running on AWS console
+![Instance running on AWS console](screenshots/instance_running.png)
+
+------------------------------------------------------------------------
+
 ## 🏗️ Architecture
 
 User → ALB (Public Subnet) → Target Group → EC2 (Private Subnet) →
